@@ -1,0 +1,43 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. CREDIT-SCORE.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+
+01 WS-SCORE PIC 9(4).
+
+PROCEDURE DIVISION.
+
+    ACCEPT WS-SCORE.
+
+    IF WS-SCORE < 300 OR WS-SCORE > 850
+
+        DISPLAY "INVALID SCORE"
+
+    ELSE IF WS-SCORE <= 579
+
+        DISPLAY "Poor"
+
+    ELSE IF WS-SCORE <= 669
+
+        DISPLAY "Fair"
+
+    ELSE IF WS-SCORE <= 739
+
+        DISPLAY "Good"
+
+    ELSE IF WS-SCORE <= 799
+
+        DISPLAY "Very Good"
+
+    ELSE
+
+        DISPLAY "Excellent"
+
+    END-IF
+    END-IF
+    END-IF
+    END-IF
+    END-IF.
+
+    STOP RUN.
