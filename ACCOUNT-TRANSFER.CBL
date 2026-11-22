@@ -1,0 +1,57 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. ACCOUNT-TRANSFER.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+
+01 WS-SOURCE PIC 9(7).
+01 WS-DEST PIC 9(7).
+01 WS-AMOUNT PIC 9(7).
+
+01 WS-NEW-SOURCE PIC 9(7).
+01 WS-NEW-DEST PIC 9(8).
+
+01 WS-OUT1 PIC Z(6)9.
+01 WS-OUT2 PIC Z(7)9.
+
+PROCEDURE DIVISION.
+
+    ACCEPT WS-SOURCE.
+    ACCEPT WS-DEST.
+    ACCEPT WS-AMOUNT.
+
+    IF WS-AMOUNT = 0
+
+        DISPLAY "INVALID TRANSFER AMOUNT"
+
+    ELSE
+
+        IF WS-AMOUNT <= WS-SOURCE
+
+            COMPUTE WS-NEW-SOURCE =
+                WS-SOURCE - WS-AMOUNT
+
+            COMPUTE WS-NEW-DEST =
+                WS-DEST + WS-AMOUNT
+
+            IF WS-NEW-DEST <= 9999999
+
+                MOVE WS-NEW-SOURCE TO WS-OUT1
+                MOVE WS-NEW-DEST TO WS-OUT2
+
+                DISPLAY "Source balance: " WS-OUT1
+                DISPLAY "Destination balance: " WS-OUT2
+
+            ELSE
+                DISPLAY "DESTINATION BALANCE OVERFLOW"
+            END-IF
+
+        ELSE
+
+            DISPLAY "INSUFFICIENT BALANCE"
+
+        END-IF
+
+    END-IF.
+
+    STOP RUN.
